@@ -1,0 +1,5 @@
+rootProject.name = 'API-League'
+include 'controller'
+include 'service'
+include 'repository'
+
