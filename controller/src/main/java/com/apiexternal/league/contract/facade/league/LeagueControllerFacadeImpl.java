@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.apiexternal.league.contract.mapper.request.LeagueControllerRequestMapper.toLeagueService;
+import static com.apiexternal.league.contract.mapper.request.LeagueControllerRequestMapper.toLeagueServiceWithId;
+import static com.apiexternal.league.contract.mapper.request.LeagueControllerRequestMapper.toLeagueServiceWithoutId;
 import static com.apiexternal.league.contract.mapper.response.LeagueControllerResponseMapper.toLeagueResponse;
 
 @AllArgsConstructor
@@ -21,22 +22,20 @@ public class LeagueControllerFacadeImpl implements LeagueControllerFacade{
     private final LeagueService facade;
 
     public LeagueControllerResponse saveLeague(LeagueControllerRequest league) {
-        LeagueServiceRequest leagueSave = toLeagueService(league);
-        LeagueServiceResponse leagueResponse = facade.saveLeague(leagueSave);
+        LeagueServiceResponse leagueResponse = facade.saveLeague(toLeagueServiceWithoutId(league));
         return toLeagueResponse(leagueResponse);
     }
 
-    public LeagueControllerResponse updateLeague(LeagueControllerRequest league, String id) {
-        LeagueServiceRequest leagueUpdate = toLeagueService(league);
-        LeagueServiceResponse leagueResponse = facade.updateLeague(leagueUpdate, id);
+    public LeagueControllerResponse updateLeague(LeagueControllerRequest league, Long id) {
+        LeagueServiceResponse leagueResponse = facade.updateLeague(toLeagueServiceWithId(league, id));
         return toLeagueResponse(leagueResponse);
     }
 
-    public void deleteLeague(String id) {
+    public void deleteLeague(Long id) {
         facade.deleteLeague(id);
     }
 
-    public LeagueControllerResponse findLeague(String id) {
+    public LeagueControllerResponse findLeague(Long id) {
         LeagueServiceResponse leagueFind = facade.findLeague(id);
         return toLeagueResponse(leagueFind);
     }

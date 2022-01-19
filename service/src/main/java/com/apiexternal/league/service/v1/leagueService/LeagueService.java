@@ -21,22 +21,20 @@ public class LeagueService {
     private final LeagueRepository leagueRepository;
 
     public LeagueServiceResponse saveLeague(LeagueServiceRequest league) {
-        League leagueSave = toLeagueEntity(league);
-        League leagueResponse = leagueRepository.save(leagueSave);
+        League leagueResponse = leagueRepository.save(toLeagueEntity(league));
         return toLeagueResponse(leagueResponse);
     }
 
-    public LeagueServiceResponse updateLeague(LeagueServiceRequest league, String id) {
-        League leagueEntity = toLeagueEntity(league);
-        League leagueSave = leagueRepository.save(leagueEntity);
+    public LeagueServiceResponse updateLeague(LeagueServiceRequest league) {
+        League leagueSave = leagueRepository.save(toLeagueEntity(league));
         return toLeagueResponse(leagueSave);
     }
 
-    public void deleteLeague(String id) {
+    public void deleteLeague(Long id) {
         leagueRepository.deleteById(id);
     }
 
-    public LeagueServiceResponse findLeague(String id) throws NotFoundException {
+    public LeagueServiceResponse findLeague(Long id) throws NotFoundException {
         League league = leagueRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("ID not found"));
         return toLeagueResponse(league);

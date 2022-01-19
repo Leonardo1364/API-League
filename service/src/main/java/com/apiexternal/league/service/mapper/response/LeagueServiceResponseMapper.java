@@ -12,7 +12,7 @@ public interface LeagueServiceResponseMapper {
 
         return LeagueServiceResponse.builder()
                 .id(leagueResponse.getId())
-                .league(leagueResponse.getLeague())
+                .name(leagueResponse.getName())
                 .country(leagueResponse.getCountry())
                 .build();
     }

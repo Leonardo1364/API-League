@@ -17,17 +17,16 @@ public class LeagueFacade {
         return leagueService.saveLeague(league);
     }
 
-    public LeagueServiceResponse updateLeague(LeagueServiceRequest league, String id) {
-        LeagueServiceResponse leagueId = leagueService.findLeague(id);
-        return leagueService.updateLeague(league, leagueId.getId());
+    public LeagueServiceResponse updateLeague(LeagueServiceRequest league) {
+        return leagueService.updateLeague(league);
     }
 
-    public void deleteLeague(String id) {
+    public void deleteLeague(Long id) {
         leagueService.findLeague(id);
         leagueService.deleteLeague(id);
     }
 
-    public LeagueServiceResponse findLeague(String id) {
+    public LeagueServiceResponse findLeague(Long id) {
         leagueService.findLeague(id);
         return leagueService.findLeague(id);
     }

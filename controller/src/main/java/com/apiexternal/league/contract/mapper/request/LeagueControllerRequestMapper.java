@@ -5,15 +5,26 @@ import com.apiexternal.league.service.model.request.LeagueServiceRequest;
 
 public interface LeagueControllerRequestMapper {
 
-    static LeagueServiceRequest toLeagueService(LeagueControllerRequest leagueRequest) {
-        if (leagueRequest == null) {
+    static LeagueServiceRequest toLeagueServiceWithId(LeagueControllerRequest leagueRequest, Long id) {
+        if (leagueRequest == null && id == null) {
             return null;
         }
 
         return LeagueServiceRequest.builder()
-                .id(leagueRequest.getId())
-                .league(leagueRequest.getLeague())
+                .id(id)
+                .name(leagueRequest.getName())
                 .country(leagueRequest.getCountry())
                 .build();
+    }
+
+    static LeagueServiceRequest toLeagueServiceWithoutId(LeagueControllerRequest leagueRequest) {
+        if (leagueRequest == null) {
+            return null;
+        }
+
+            return LeagueServiceRequest.builder()
+                    .name(leagueRequest.getName())
+                    .country(leagueRequest.getCountry())
+                    .build();
     }
 }

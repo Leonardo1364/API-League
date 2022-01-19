@@ -12,7 +12,7 @@ public interface LeagueControllerResponseMapper {
 
         return LeagueControllerResponse.builder()
                 .id(leagueResponse.getId())
-                .league(leagueResponse.getLeague())
+                .name(leagueResponse.getName())
                 .country(leagueResponse.getCountry())
                 .build();
     }

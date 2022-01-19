@@ -17,7 +17,7 @@ public class LeagueController {
 
     private final LeagueControllerFacade facade;
 
-    @PutMapping("/{id}")
+    @PostMapping()
     @ResponseStatus(CREATED)
     public LeagueControllerResponse saveLeague(@RequestBody LeagueControllerRequest league) {
         return facade.saveLeague(league);
@@ -26,19 +26,19 @@ public class LeagueController {
     @PutMapping("/{id}")
     @ResponseStatus(OK)
     public LeagueControllerResponse updateLeague(@RequestBody LeagueControllerRequest league,
-                                                 @PathVariable String id) {
+                                                 @PathVariable Long id) {
         return facade.updateLeague(league, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
-    public void deleteLeague(@PathVariable String id) {
+    public void deleteLeague(@PathVariable Long id) {
         facade.deleteLeague(id);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(OK)
-    public LeagueControllerResponse findLeague(@PathVariable String id) {
+    public LeagueControllerResponse findLeague(@PathVariable Long id) {
         return facade.findLeague(id);
     }
 

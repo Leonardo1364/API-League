@@ -11,7 +11,7 @@ public interface LeagueServiceRequestMapper {
         }
      return League.builder()
              .id(leagueRequest.getId())
-             .league(leagueRequest.getLeague())
+             .name(leagueRequest.getName())
              .country(leagueRequest.getCountry())
              .build();
     }

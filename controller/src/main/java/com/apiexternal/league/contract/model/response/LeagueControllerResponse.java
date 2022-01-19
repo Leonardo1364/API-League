@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class LeagueControllerResponse {
 
-    private String id;
-    private String league;
+    private Long id;
+
+    private String name;
+
     private String country;
 }
