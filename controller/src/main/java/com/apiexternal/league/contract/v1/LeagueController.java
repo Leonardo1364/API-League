@@ -19,32 +19,32 @@ public class LeagueController {
 
     @PostMapping()
     @ResponseStatus(CREATED)
-    public LeagueControllerResponse saveLeague(@RequestBody LeagueControllerRequest league) {
-        return facade.saveLeague(league);
+    public LeagueControllerResponse save(@RequestBody LeagueControllerRequest league) {
+        return facade.save(league);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(OK)
-    public LeagueControllerResponse updateLeague(@RequestBody LeagueControllerRequest league,
-                                                 @PathVariable Long id) {
-        return facade.updateLeague(league, id);
+    public LeagueControllerResponse update(@RequestBody LeagueControllerRequest league,
+                                           @PathVariable Long id) {
+        return facade.update(league, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
-    public void deleteLeague(@PathVariable Long id) {
-        facade.deleteLeague(id);
+    public void delete(@PathVariable Long id) {
+        facade.delete(id);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(OK)
-    public LeagueControllerResponse findLeague(@PathVariable Long id) {
-        return facade.findLeague(id);
+    public LeagueControllerResponse findById(@PathVariable Long id) {
+        return facade.findById(id);
     }
 
     @GetMapping()
     @ResponseStatus(OK)
-    public List<LeagueControllerResponse> findAllLeagues() {
-        return facade.findAllLeagues();
+    public List<LeagueControllerResponse> findAll() {
+        return facade.findAll();
     }
 }

@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface LeagueControllerFacade {
 
-    LeagueControllerResponse saveLeague(LeagueControllerRequest league);
+    LeagueControllerResponse save(LeagueControllerRequest league);
 
-    LeagueControllerResponse updateLeague(LeagueControllerRequest league, Long id);
+    LeagueControllerResponse update(LeagueControllerRequest league, Long id);
 
-    void deleteLeague(Long id);
+    void delete(Long id);
 
-    LeagueControllerResponse findLeague(Long id);
+    LeagueControllerResponse findById(Long id);
 
-    List<LeagueControllerResponse> findAllLeagues();
+    List<LeagueControllerResponse> findAll();
 }

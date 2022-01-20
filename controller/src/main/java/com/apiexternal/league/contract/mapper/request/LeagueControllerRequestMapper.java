@@ -5,7 +5,7 @@ import com.apiexternal.league.service.model.request.LeagueServiceRequest;
 
 public interface LeagueControllerRequestMapper {
 
-    static LeagueServiceRequest toLeagueServiceWithId(LeagueControllerRequest leagueRequest, Long id) {
+    static LeagueServiceRequest toServiceWithId(LeagueControllerRequest leagueRequest, Long id) {
         if (leagueRequest == null && id == null) {
             return null;
         }
@@ -17,7 +17,7 @@ public interface LeagueControllerRequestMapper {
                 .build();
     }
 
-    static LeagueServiceRequest toLeagueServiceWithoutId(LeagueControllerRequest leagueRequest) {
+    static LeagueServiceRequest toServiceWithoutId(LeagueControllerRequest leagueRequest) {
         if (leagueRequest == null) {
             return null;
         }

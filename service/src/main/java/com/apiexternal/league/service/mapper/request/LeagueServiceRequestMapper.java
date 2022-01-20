@@ -5,7 +5,7 @@ import com.apiexternal.league.service.model.request.LeagueServiceRequest;
 
 public interface LeagueServiceRequestMapper {
 
-    static League toLeagueEntity(LeagueServiceRequest leagueRequest) {
+    static League toEntity(LeagueServiceRequest leagueRequest) {
         if (leagueRequest == null) {
             return null;
         }

@@ -5,7 +5,7 @@ import com.apiexternal.league.service.model.response.LeagueServiceResponse;
 
 public interface LeagueServiceResponseMapper {
 
-    static LeagueServiceResponse toLeagueResponse(League leagueResponse) {
+    static LeagueServiceResponse toResponse(League leagueResponse) {
         if (leagueResponse == null) {
             return null;
         }

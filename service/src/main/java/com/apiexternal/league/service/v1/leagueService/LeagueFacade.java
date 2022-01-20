@@ -13,25 +13,25 @@ public class LeagueFacade {
 
     private LeagueService leagueService;
 
-    public LeagueServiceResponse saveLeague(LeagueServiceRequest league) {
-        return leagueService.saveLeague(league);
+    public LeagueServiceResponse save(LeagueServiceRequest league) {
+        return leagueService.save(league);
     }
 
-    public LeagueServiceResponse updateLeague(LeagueServiceRequest league) {
-        return leagueService.updateLeague(league);
+    public LeagueServiceResponse update(LeagueServiceRequest league) {
+        return leagueService.update(league);
     }
 
-    public void deleteLeague(Long id) {
-        leagueService.findLeague(id);
-        leagueService.deleteLeague(id);
+    public void delete(Long id) {
+        leagueService.findById(id);
+        leagueService.delete(id);
     }
 
-    public LeagueServiceResponse findLeague(Long id) {
-        leagueService.findLeague(id);
-        return leagueService.findLeague(id);
+    public LeagueServiceResponse findById(Long id) {
+        leagueService.findById(id);
+        return leagueService.findById(id);
     }
 
-    public List<LeagueServiceResponse> findAllLeagues() {
-        return leagueService.findAllLeagues();
+    public List<LeagueServiceResponse> findAll() {
+        return leagueService.findAll();
     }
 }

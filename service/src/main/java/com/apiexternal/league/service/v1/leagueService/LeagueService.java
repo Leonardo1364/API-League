@@ -11,38 +11,36 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.apiexternal.league.service.mapper.request.LeagueServiceRequestMapper.toLeagueEntity;
-import static com.apiexternal.league.service.mapper.response.LeagueServiceResponseMapper.toLeagueResponse;
+import static com.apiexternal.league.service.mapper.request.LeagueServiceRequestMapper.toEntity;
+import static com.apiexternal.league.service.mapper.response.LeagueServiceResponseMapper.toResponse;
 
 @AllArgsConstructor
 @Service
-public class LeagueService {
+public record LeagueService(LeagueRepository leagueRepository) {
 
-    private final LeagueRepository leagueRepository;
-
-    public LeagueServiceResponse saveLeague(LeagueServiceRequest league) {
-        League leagueResponse = leagueRepository.save(toLeagueEntity(league));
-        return toLeagueResponse(leagueResponse);
+    public LeagueServiceResponse save(LeagueServiceRequest league) {
+        League leagueResponse = leagueRepository.save(toEntity(league));
+        return toResponse(leagueResponse);
     }
 
-    public LeagueServiceResponse updateLeague(LeagueServiceRequest league) {
-        League leagueSave = leagueRepository.save(toLeagueEntity(league));
-        return toLeagueResponse(leagueSave);
+    public LeagueServiceResponse update(LeagueServiceRequest league) {
+        League leagueSave = leagueRepository.save(toEntity(league));
+        return toResponse(leagueSave);
     }
 
-    public void deleteLeague(Long id) {
+    public void delete(Long id) {
         leagueRepository.deleteById(id);
     }
 
-    public LeagueServiceResponse findLeague(Long id) throws NotFoundException {
+    public LeagueServiceResponse findById(Long id) throws NotFoundException {
         League league = leagueRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("ID not found"));
-        return toLeagueResponse(league);
+        return toResponse(league);
     }
 
-    public List<LeagueServiceResponse> findAllLeagues() {
+    public List<LeagueServiceResponse> findAll() {
         return leagueRepository.findAll().stream()
-                .map(LeagueServiceResponseMapper::toLeagueResponse)
+                .map(LeagueServiceResponseMapper::toResponse)
                 .toList();
     }
 }
