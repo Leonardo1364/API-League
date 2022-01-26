@@ -1,19 +1,20 @@
 package com.apiexternal.league.service.mapper.response;
 
-import com.apiexternal.league.model.entity.League;
+import com.apiexternal.league.model.entity.LeagueEntity;
 import com.apiexternal.league.service.model.response.LeagueServiceResponse;
 
-public interface LeagueServiceResponseMapper {
+import java.util.Optional;
 
-    static LeagueServiceResponse toResponse(League leagueResponse) {
-        if (leagueResponse == null) {
-            return null;
-        }
+public class LeagueServiceResponseMapper {
 
-        return LeagueServiceResponse.builder()
+    public static LeagueServiceResponse toResponse(LeagueEntity leagueResponse) {
+
+        return Optional.ofNullable(leagueResponse)
+                .map(leagueEntity -> LeagueServiceResponse.builder()
                 .id(leagueResponse.getId())
                 .name(leagueResponse.getName())
                 .country(leagueResponse.getCountry())
-                .build();
+                .build())
+                .orElse(null);
     }
 }

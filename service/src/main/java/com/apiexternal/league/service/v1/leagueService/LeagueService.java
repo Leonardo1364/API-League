@@ -1,7 +1,7 @@
 package com.apiexternal.league.service.v1.leagueService;
 
 import com.apiexternal.league.exceptions.notfound.NotFoundException;
-import com.apiexternal.league.model.entity.League;
+import com.apiexternal.league.model.entity.LeagueEntity;
 import com.apiexternal.league.repository.LeagueRepository;
 import com.apiexternal.league.service.mapper.response.LeagueServiceResponseMapper;
 import com.apiexternal.league.service.model.request.LeagueServiceRequest;
@@ -16,15 +16,17 @@ import static com.apiexternal.league.service.mapper.response.LeagueServiceRespon
 
 @AllArgsConstructor
 @Service
-public record LeagueService(LeagueRepository leagueRepository) {
+public class LeagueService {
+
+    private final LeagueRepository leagueRepository;
 
     public LeagueServiceResponse save(LeagueServiceRequest league) {
-        League leagueResponse = leagueRepository.save(toEntity(league));
+        LeagueEntity leagueResponse = leagueRepository.save(toEntity(league));
         return toResponse(leagueResponse);
     }
 
     public LeagueServiceResponse update(LeagueServiceRequest league) {
-        League leagueSave = leagueRepository.save(toEntity(league));
+        LeagueEntity leagueSave = leagueRepository.save(toEntity(league));
         return toResponse(leagueSave);
     }
 
@@ -32,8 +34,8 @@ public record LeagueService(LeagueRepository leagueRepository) {
         leagueRepository.deleteById(id);
     }
 
-    public LeagueServiceResponse findById(Long id) throws NotFoundException {
-        League league = leagueRepository.findById(id)
+    public LeagueServiceResponse findById(Long id) {
+        LeagueEntity league = leagueRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("ID not found"));
         return toResponse(league);
     }

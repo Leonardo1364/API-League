@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @ToString
 @Builder
 @Entity(name = "league")
-public class League {
+public class LeagueEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

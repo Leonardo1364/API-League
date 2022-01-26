@@ -3,17 +3,18 @@ package com.apiexternal.league.contract.mapper.response;
 import com.apiexternal.league.contract.model.response.LeagueControllerResponse;
 import com.apiexternal.league.service.model.response.LeagueServiceResponse;
 
-public interface LeagueControllerResponseMapper {
+import java.util.Optional;
 
-    static LeagueControllerResponse toLeagueResponse(LeagueServiceResponse leagueResponse) {
-        if (leagueResponse == null) {
-            return null;
-        }
+public class LeagueControllerResponseMapper {
 
-        return LeagueControllerResponse.builder()
-                .id(leagueResponse.getId())
-                .name(leagueResponse.getName())
-                .country(leagueResponse.getCountry())
-                .build();
+    public static LeagueControllerResponse toLeagueResponse(LeagueServiceResponse leagueResponse) {
+
+        return Optional.ofNullable(leagueResponse)
+                .map(leagueServiceResponse -> LeagueControllerResponse.builder()
+                    .id(leagueResponse.getId())
+                    .name(leagueResponse.getName())
+                    .country(leagueResponse.getCountry())
+                    .build())
+                .orElse(null);
     }
 }

@@ -3,28 +3,28 @@ package com.apiexternal.league.contract.mapper.request;
 import com.apiexternal.league.contract.model.request.LeagueControllerRequest;
 import com.apiexternal.league.service.model.request.LeagueServiceRequest;
 
-public interface LeagueControllerRequestMapper {
+import java.util.Optional;
 
-    static LeagueServiceRequest toServiceWithId(LeagueControllerRequest leagueRequest, Long id) {
-        if (leagueRequest == null && id == null) {
-            return null;
-        }
+public class LeagueControllerRequestMapper {
 
-        return LeagueServiceRequest.builder()
-                .id(id)
-                .name(leagueRequest.getName())
-                .country(leagueRequest.getCountry())
-                .build();
-    }
+    public static LeagueServiceRequest toServiceWithId(LeagueControllerRequest leagueRequest, Long id) {
 
-    static LeagueServiceRequest toServiceWithoutId(LeagueControllerRequest leagueRequest) {
-        if (leagueRequest == null) {
-            return null;
-        }
-
-            return LeagueServiceRequest.builder()
+        return Optional.ofNullable(leagueRequest)
+                .map(leagueControllerRequest -> LeagueServiceRequest.builder()
+                    .id(id)
                     .name(leagueRequest.getName())
                     .country(leagueRequest.getCountry())
-                    .build();
+                    .build())
+                .orElse(null);
+    }
+
+    public static LeagueServiceRequest toServiceWithoutId(LeagueControllerRequest leagueRequest) {
+
+            return Optional.ofNullable(leagueRequest)
+                    .map(leagueControllerRequest -> LeagueServiceRequest.builder()
+                        .name(leagueRequest.getName())
+                        .country(leagueRequest.getCountry())
+                        .build())
+                    .orElse(null);
     }
 }
