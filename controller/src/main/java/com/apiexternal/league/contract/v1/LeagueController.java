@@ -15,36 +15,36 @@ import static org.springframework.http.HttpStatus.*;
 @RequestMapping("/v1/league")
 public class LeagueController {
 
-    private final LeagueControllerFacade facade;
+    private final LeagueControllerFacade controllerFacade;
 
     @PostMapping()
     @ResponseStatus(CREATED)
     public LeagueControllerResponse save(@RequestBody LeagueControllerRequest league) {
-        return facade.save(league);
+        return controllerFacade.save(league);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(OK)
     public LeagueControllerResponse update(@RequestBody LeagueControllerRequest league,
                                            @PathVariable Long id) {
-        return facade.update(league, id);
+        return controllerFacade.update(league, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        facade.delete(id);
+        controllerFacade.delete(id);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public LeagueControllerResponse findById(@PathVariable Long id) {
-        return facade.findById(id);
+        return controllerFacade.findById(id);
     }
 
     @GetMapping()
     @ResponseStatus(OK)
     public List<LeagueControllerResponse> findAll() {
-        return facade.findAll();
+        return controllerFacade.findAll();
     }
 }
